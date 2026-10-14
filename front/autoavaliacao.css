@@ -1,0 +1,341 @@
+:root {
+    --bg: #07111d;
+    --panel: #0d1b2a;
+    --panel-2: #102235;
+    --line: rgba(255,255,255,.08);
+    --text: #eef5fb;
+    --muted: #8fa2b6;
+    --blue: #36a7ff;
+    --cyan: #3dd7d0;
+    --purple: #8e7dff;
+    --orange: #ffb45b;
+    --red: #ff6e79;
+    --green: #42d6a3;
+  }
+  
+  /* =========================
+     ESTRUTURA GERAL
+  ========================= */
+  body {
+    background: var(--bg);
+    font-family: "Outfit", sans-serif;
+    color: var(--text);
+    margin: 0;
+    display: flex;
+  }
+  
+  .app-shell {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+  }
+  
+  /* =========================
+     MENU LATERAL
+  ========================= */
+  .sidebar {
+    width: 235px;
+    background: var(--panel);
+    display: flex;
+    flex-direction: column;
+    padding: 22px;
+    border-right: 1px solid var(--line);
+  }
+  
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+  }
+  
+  .brand-icon {
+    font-size: 20px;
+    color: var(--red);
+  }
+  
+  .brand strong {
+    display: block;
+    font-size: 14px;
+    color: var(--text);
+  }
+  
+  .brand span {
+    font-size: 11px;
+    color: var(--muted);
+  }
+  
+  /* Navegação */
+  .nav {
+    display: grid;
+    gap: 7px;
+  }
+  
+  .nav a {
+    color: var(--muted);
+    text-decoration: none;
+    padding: 12px 13px;
+    border-radius: 11px;
+    font-size: 12px;
+    display: flex;
+    gap: 11px;
+    align-items: center;
+    transition: 0.2s;
+  }
+  
+  .nav a:hover,
+  .nav a.active {
+    color: white;
+    background: linear-gradient(90deg, rgba(54,167,255,0.16), rgba(54,167,255,0.04));
+  }
+  
+  .nav a.active {
+    border-left: 2px solid var(--blue);
+  }
+  
+  /* Parte inferior */
+  .sidebar-bottom {
+    margin-top: auto;
+  }
+  
+  .student-card {
+    padding: 14px;
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,0.025);
+    border-radius: 13px;
+    margin-bottom: 14px;
+  }
+  
+  .mini-label {
+    color: var(--blue);
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    font-weight: 800;
+  }
+  
+  .student-card p {
+    color: var(--muted);
+    line-height: 1.55;
+    font-size: 10px;
+    margin-top: 7px;
+  }
+  
+  .data-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 8px;
+    color: var(--muted);
+    font-size: 9px;
+  }
+  
+  .status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--orange);
+    box-shadow: 0 0 10px rgba(255,180,91,0.7);
+  }
+  
+  /* =========================
+     CONTEÚDO PRINCIPAL
+  ========================= */
+  main {
+    flex: 1;
+    background: var(--panel-2);
+    padding: 40px;
+    overflow-y: auto;
+  }
+  
+  /* CABEÇALHO PRINCIPAL */
+  .header-principal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 25px 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+  
+  .header-text {
+    max-width: 70%;
+  }
+  
+  .header-text h1 {
+    font-size: 26px;
+    color: var(--text);
+    margin: 0 0 8px 0;
+  }
+  
+  .header-text p {
+    color: var(--muted);
+    font-size: 13px;
+    margin: 0;
+  }
+  
+  .header-extra {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .icon-heart {
+    font-size: 28px;
+    color: var(--red);
+  }
+  
+  .info-text {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.4;
+  }
+  
+  /* =========================
+     DASHBOARD (3 COLUNAS)
+  ========================= */
+  .dashboard {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 25px;
+  }
+  
+  /* Cartões */
+  .card {
+    background: var(--panel);
+    border-radius: 12px;
+    padding: 25px;
+    border: 1px solid var(--line);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+  
+  .card h2 {
+    font-size: 18px;
+    color: var(--blue);
+    margin-bottom: 15px;
+  }
+  
+  /* Formulário */
+  form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+  
+  label {
+    display: flex;
+    flex-direction: column;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  
+  input, select {
+    margin-top: 5px;
+    padding: 10px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--panel-2);
+    color: var(--text);
+  }
+  
+  input:focus, select:focus {
+    outline: none;
+    border-color: var(--blue);
+    box-shadow: 0 0 6px var(--blue);
+  }
+  
+  /* Botão */
+  .btn-primary {
+    grid-column: span 2;
+    background: var(--blue);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background: var(--cyan);
+  }
+  
+  /* Resultado */
+  .resultado {
+    text-align: center;
+  }
+  
+  #nivel-risco {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  #nivel-risco.baixo { color: var(--green); }
+  #nivel-risco.moderado { color: var(--orange); }
+  #nivel-risco.alto { color: var(--red); }
+  
+  /* Indicador circular */
+  .grafico-circular {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: conic-gradient(var(--red) 0% 78%, var(--panel-2) 78% 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+  }
+  
+  .grafico-circular span {
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--red);
+  }
+  
+  /* Alertas e fatores */
+  .alerta {
+    background: rgba(255,110,121,0.1);
+    border: 1px solid var(--red);
+    color: var(--red);
+    font-size: 12px;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+  }
+  
+  .fatores ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .fatores li {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--muted);
+    margin: 6px 0;
+  }
+  
+  /* Resumo */
+  .resumo ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .resumo li {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--muted);
+    margin: 6px 0;
+  }
+  
+  .resumo span {
+    font-weight: 600;
+    color: var(--text);
+  }
+  

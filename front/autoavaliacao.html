@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>HeartGuard - Previsão de Ataque Cardíaco</title>
+  <link rel="stylesheet" href="/autoavaliacao.css">
+</head>
+<body>
+    <div class="app-shell">
+
+        <!-- =========================
+             MENU LATERAL
+        ========================== -->
+        <aside class="sidebar">
+          <div class="brand">
+            <div class="brand-icon">❤</div>
+            <div>
+              <strong>HeartGuard</strong>
+              <span>Cardio Analytics</span>
+            </div>
+          </div>
+    
+          <nav class="nav">
+            <a href="#visao-geral" class="active">⌂ <span>Visão geral</span></a>
+            <a href="/autoavaliacao.html">◉ <span>Autoavaliação</span></a>
+            <a href="#fatores">◉ <span>Fatores de risco</span></a>
+            <a href="#indicadores">⌁ <span>Indicadores</span></a>
+          </nav>
+    
+          <div class="sidebar-bottom">
+            <div class="student-card">
+              <span class="mini-label">PROJETO ACADÊMICO</span>
+              <p>Dashboard para análise dos principais fatores associados ao risco cardiovascular.</p>
+            </div>
+    
+            <div class="data-status" id="dataStatus">
+              <span class="status-dot"></span>
+              <span>Modo demonstrativo</span>
+            </div>
+          </div>
+        </aside>
+    
+        <!-- =========================
+             CONTEÚDO PRINCIPAL
+        ========================== -->
+        <main class="container">
+          <header class="header-principal">
+            <div class="header-text">
+              <h1>Previsão de Ataque Cardíaco</h1>
+              <p>Informe os dados do paciente para que o modelo de Machine Learning analise o risco de ocorrência de um ataque cardíaco.</p>
+            </div>
+            <div class="header-extra">
+              <span class="icon-heart">❤</span>
+              <p class="info-text">Mais dados,<br>mais precisão,<br>mais vidas.</p>
+            </div>
+          </header>
+    
+          <section class="dashboard">
+            <!-- COLUNA 1: Dados do Paciente -->
+            <section class="card paciente">
+              <h2>🩺 Dados do Paciente</h2>
+              <form id="form-risco">
+                <label>Idade
+                  <input type="number" id="idade" required>
+                </label>
+                <label>Sexo
+                  <select id="sexo" required>
+                    <option value="">Selecione</option>
+                    <option value="masculino">Masculino</option>
+                    <option value="feminino">Feminino</option>
+                  </select>
+                </label>
+                <label>Pressão Arterial (sistólica)
+                  <input type="number" id="pressao" required>
+                </label>
+                <label>Colesterol (mg/dL)
+                  <input type="number" id="colesterol" required>
+                </label>
+                <label>Glicose no Sangue (mg/dL)
+                  <input type="number" id="glicose">
+                </label>
+                <label>Frequência Cardíaca (bpm)
+                  <input type="number" id="freq">
+                </label>
+                <label>Dor no Peito (Tipo)
+                  <select id="dor">
+                    <option value="1">Tipo 1</option>
+                    <option value="2">Tipo 2</option>
+                    <option value="3">Tipo 3</option>
+                  </select>
+                </label>
+                <label>Resultado do ECG
+                  <select id="ecg">
+                    <option value="normal">Normal</option>
+                    <option value="anormal">Anormal</option>
+                  </select>
+                </label>
+                <label>Máxima Frequência Cardíaca (bpm)
+                  <input type="number" id="maxfreq">
+                </label>
+                <label>Angina
+                  <select id="angina">
+                    <option value="nao">Não</option>
+                    <option value="sim">Sim</option>
+                  </select>
+                </label>
+                <label>ST no ECG
+                  <select id="st">
+                    <option value="nao">Não</option>
+                    <option value="sim">Sim</option>
+                  </select>
+                </label>
+                <label>Depressão do ST (mm)
+                  <input type="number" id="depressao">
+                </label>
+                <label>Slope do ST
+                  <select id="slope">
+                    <option value="ascendente">Ascendente</option>
+                    <option value="descendente">Descendente</option>
+                  </select>
+                </label>
+                <label>Marcador Cardíaco (Troponina)
+                  <select id="troponina">
+                    <option value="nao">Não</option>
+                    <option value="sim">Sim</option>
+                  </select>
+                </label>
+                <button type="submit" class="btn-primary">⚙️ Analisar Risco</button>
+              </form>
+            </section>
+    
+            <!-- COLUNA 2: Resultado -->
+            <section class="card resultado">
+              <h2>🚨 Resultado</h2>
+              <div id="risco-card">
+                <h3 id="nivel-risco">Baixo Risco</h3>
+                <div class="grafico-circular">
+                  <span id="percentual">0%</span>
+                </div>
+                <p id="descricao">Preencha os dados e clique em “Analisar Risco”.</p>
+              </div>
+              <div class="alerta">
+                <strong>Importante:</strong> Esta é uma previsão baseada em dados e não substitui o diagnóstico médico.
+              </div>
+              <div class="fatores">
+                <h4>Principais fatores que influenciaram o resultado</h4>
+                <ul id="lista-fatores">
+                  <li>Idade <span>–</span></li>
+                  <li>Pressão Arterial <span>–</span></li>
+                  <li>Colesterol <span>–</span></li>
+                  <li>Glicose <span>–</span></li>
+                  <li>Frequência Cardíaca <span>–</span></li>
+                </ul>
+              </div>
+            </section>
+    
+            <!-- COLUNA 3: Resumo -->
+            <section class="card resumo">
+              <h2>📋 Resumo do Paciente</h2>
+              <ul id="resumo">
+                <li>Idade: <span id="r-idade">–</span></li>
+                <li>Sexo: <span id="r-sexo">–</span></li>
+                <li>Pressão Arterial: <span id="r-pressao">–</span></li>
+                <li>Colesterol: <span id="r-colesterol">–</span></li>
+                <li>Glicose: <span id="r-glicose">–</span></li>
+                <li>Frequência Cardíaca: <span id="r-freq">–</span></li>
+              </ul>
+              <div class="grafico-circular" id="grafico-resumo">
+                <span>78%</span>
+              </div>
+              <div class="fatores">
+                <h4>Distribuição de Risco (Base de Dados)</h4>
+                <p><span style="color: var(--red); font-weight: bold;">Alto Risco</span> (1.687 casos)</p>
+                <p><span style="color: var(--green); font-weight: bold;">Baixo Risco</span> (4.892 casos)</p>
+              </div>
+            </section>
+          </section>
+        </main>
+      </div>
+
+  <script>
+    document.getElementById('form-risco').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const idade = parseInt(document.getElementById('idade').value);
+      const pressao = parseInt(document.getElementById('pressao').value);
+      const colesterol = parseInt(document.getElementById('colesterol').value);
+      const glicose = parseInt(document.getElementById('glicose').value);
+      const freq = parseInt(document.getElementById('freq').value);
+
+      let risco = 'Baixo Risco';
+      let percentual = 22;
+      if (colesterol > 240 || pressao > 140 || idade > 60) {
+        risco = 'Alto Risco';
+        percentual = 78;
+      } else if (colesterol > 200 || pressao > 130) {
+        risco = 'Moderado Risco';
+        percentual = 45;
+      }
+
+      document.getElementById('nivel-risco').textContent = risco;
+      document.getElementById('percentual').textContent = percentual + '%';
+      document.getElementById('descricao').textContent = `Com base nos dados informados, o modelo identificou ${risco.toLowerCase()} de ataque cardíaco.`;
+
+      document.getElementById('r-idade').textContent = idade + ' anos';
+      document.getElementById('r-sexo').textContent = document.getElementById('sexo').value;
+      document.getElementById('r-pressao').textContent = pressao + ' mmHg';
+      document.getElementById('r-colesterol').textContent = colesterol + ' mg/dL';
+      document.getElementById('r-glicose').textContent = glicose + ' mg/dL';
+      document.getElementById('r-freq').textContent = freq + ' bpm';
+    });
+  </script>
+</body>
+</html>

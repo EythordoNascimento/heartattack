@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HeartGuard - Análise de Risco Cardíaco</title>
+
+    <!-- Fonte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <div class="app-shell">
+
+        <!-- =========================
+             MENU LATERAL
+        ========================== -->
+
+        <aside class="sidebar">
+
+            <div class="brand">
+
+                <div class="brand-icon">
+                    ❤
+                </div>
+
+                <div>
+                    <strong>HeartGuard</strong>
+                    <span>Cardio Analytics</span>
+                </div>
+
+            </div>
+
+            <nav class="nav">
+
+                <a href="#visao-geral" class="active">
+                    ⌂
+                    <span>Visão geral</span>
+                </a>
+
+                <a href="/autoavaliacao.html">
+                    ◉
+                    <span>Autoavaliação</span>
+                </a>
+
+                <a href="#fatores">
+                    ◉
+                    <span>Fatores de risco</span>
+                </a>
+
+                <a href="#indicadores">
+                    ⌁
+                    <span>Indicadores</span>
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <div class="student-card">
+
+                    <span class="mini-label">
+                        PROJETO ACADÊMICO
+                    </span>
+
+                    <p>
+                        Dashboard para análise dos principais
+                        fatores associados ao risco cardiovascular.
+                    </p>
+
+                </div>
+
+                <div class="data-status" id="dataStatus">
+
+                    <span class="status-dot"></span>
+
+                    <span>
+                        Modo demonstrativo
+                    </span>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =========================
+             CONTEÚDO PRINCIPAL
+        ========================== -->
+
+        <main class="main">
+
+            <!-- CABEÇALHO -->
+
+            <header class="topbar">
+
+                <div>
+
+                    <span class="eyebrow">
+                        ANÁLISE DE DADOS
+                    </span>
+
+                    <h1>
+                        Risco cardiovascular
+                    </h1>
+
+                    <p>
+                        Visualização dos principais fatores selecionados
+                        para o projeto de Inteligência Artificial.
+                    </p>
+
+                </div>
+
+
+                <div class="actions">
+
+                    <label
+                        class="upload-btn"
+                        for="csvInput">
+
+                        ＋ Carregar CSV
+
+                    </label>
+
+                    <input
+                        id="csvInput"
+                        type="file"
+                        accept=".csv,text/csv"
+                        hidden
+                    >
+
+                    <button
+                        class="demo-btn"
+                        id="demoBtn">
+
+                        Dados de exemplo
+
+                    </button>
+
+                </div>
+
+            </header>
+
+
+            <!-- AVISO -->
+
+            <section
+                class="notice"
+                id="notice">
+
+                <span>
+                    i
+                </span>
+
+                <div>
+
+                    <strong>Importante:</strong>
+
+                    O arquivo CSV utilizado atualmente contém
+                    as colunas da base, mas não possui registros
+                    preenchidos.
+
+                    Por isso o dashboard inicia utilizando
+                    <b>dados demonstrativos</b>.
+
+                    Quando você carregar um CSV preenchido,
+                    os gráficos serão atualizados automaticamente.
+
+                </div>
+
+                <button id="closeNotice">
+                    ×
+                </button>
+
+            </section>
+
+
+            <!-- =========================
+                 CARDS PRINCIPAIS
+            ========================== -->
+
+            <section
+                class="metric-grid"
+                id="visao-geral">
+
+
+                <!-- PACIENTES -->
+
+                <article class="metric-card">
+
+                    <div class="metric-icon blue">
+                        ♙
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Pacientes analisados
+                        </span>
+
+                        <strong id="mPatients">
+                            12
+                        </strong>
+
+                    </div>
+
+                    <small id="mPatientsDelta">
+                        amostra demonstrativa
+                    </small>
+
+                </article>
+
+
+                <!-- IDADE -->
+
+                <article class="metric-card">
+
+                    <div class="metric-icon purple">
+                        ⌁
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Idade média
+                        </span>
+
+                        <strong id="mAge">
+                            51,3
+                            <em>anos</em>
+                        </strong>
+
+                    </div>
+
+                    <small>
+                        faixa etária analisada
+                    </small>
+
+                </article>
+
+
+                <!-- COLESTEROL -->
+
+                <article class="metric-card">
+
+                    <div class="metric-icon orange">
+                        ◈
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Colesterol médio
+                        </span>
+
+                        <strong id="mChol">
+                            221
+                            <em>mg/dL</em>
+                        </strong>
+
+                    </div>
+
+                    <small>
+                        indicador lipídico
+                    </small>
+
+                </article>
+
+
+                <!-- FREQUÊNCIA CARDÍACA -->
+
+                <article class="metric-card">
+
+                    <div class="metric-icon red">
+                        ♥
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Frequência cardíaca
+                        </span>
+
+                        <strong id="mHeart">
+                            76
+                            <em>bpm</em>
+                        </strong>
+
+                    </div>
+
+                    <small>
+                        média da amostra
+                    </small>
+
+                </article>
+
+            </section>
+
+
+            <!-- =========================
+                 GRÁFICOS
+            ========================== -->
+
+            <section
+                class="dashboard-grid"
+                id="fatores">
+
+
+                <!-- GRÁFICO DE FATORES DE RISCO -->
+
+                <article class="panel panel-large">
+
+                    <div class="panel-head">
+
+                        <div>
+
+                            <span class="panel-kicker">
+                                FATORES DE RISCO
+                            </span>
+
+                            <h2>
+                                Condições presentes na amostra
+                            </h2>
+
+                        </div>
+
+                        <span class="tag">
+                            Percentual
+                        </span>
+
+                    </div>
+
+                    <div class="chart-wrap bar-wrap">
+
+                        <canvas id="riskChart"></canvas>
+
+                    </div>
+
+                </article>
+
+
+                <!-- SEXO -->
+
+                <article class="panel">
+
+                    <div class="panel-head">
+
+                        <div>
+
+                            <span class="panel-kicker">
+                                PERFIL
+                            </span>
+
+                            <h2>
+                                Distribuição por sexo
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="donut-area">
+
+                        <div class="donut-box">
+
+                            <canvas id="sexChart"></canvas>
+
+                            <div class="donut-center">
+
+                                <strong id="sexTotal">
+                                    12
+                                </strong>
+
+                                <span>
+                                    pacientes
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="legend"
+                            id="sexLegend">
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- =========================
+                 PARTE INFERIOR
+            ========================== -->
+
+            <section
+                class="dashboard-grid bottom-grid"
+                id="indicadores">
+
+
+                <!-- IDADE -->
+
+                <article class="panel">
+
+                    <div class="panel-head">
+
+                        <div>
+
+                            <span class="panel-kicker">
+                                FAIXA ETÁRIA
+                            </span>
+
+                            <h2>
+                                Distribuição por idade
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                    <div class="chart-wrap age-wrap">
+
+                        <canvas id="ageChart"></canvas>
+
+                    </div>
+
+                </article>
+
+
+                <!-- INDICADORES CLÍNICOS -->
+
+                <article class="panel">
+
+                    <div class="panel-head">
+
+                        <div>
+
+                            <span class="panel-kicker">
+                                INDICADORES CLÍNICOS
+                            </span>
+
+                            <h2>
+                                Valores médios
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="clinical-list">
+
+
+                        <!-- COLESTEROL -->
+
+                        <div class="clinical-item">
+
+                            <div class="clinical-label">
+
+                                <span class="dot cholesterol"></span>
+
+                                Colesterol
+
+                            </div>
+
+                            <strong id="cChol">
+                                221
+                                <small>mg/dL</small>
+                            </strong>
+
+                            <div class="progress">
+
+                                <i
+                                    id="pChol"
+                                    style="width:73%">
+                                </i>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- PRESSÃO -->
+
+                        <div class="clinical-item">
+
+                            <div class="clinical-label">
+
+                                <span class="dot pressure"></span>
+
+                                Pressão sistólica
+
+                            </div>
+
+                            <strong id="cPressure">
+
+                                132
+
+                                <small>
+                                    mmHg
+                                </small>
+
+                            </strong>
+
+                            <div class="progress">
+
+                                <i
+                                    id="pPressure"
+                                    style="width:66%">
+                                </i>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- FREQUÊNCIA CARDÍACA -->
+
+                        <div class="clinical-item">
+
+                            <div class="clinical-label">
+
+                                <span class="dot heart"></span>
+
+                                Frequência cardíaca
+
+                            </div>
+
+                            <strong id="cHeart">
+
+                                76
+
+                                <small>
+                                    bpm
+                                </small>
+
+                            </strong>
+
+                            <div class="progress">
+
+                                <i
+                                    id="pHeart"
+                                    style="width:54%">
+                                </i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="risk-summary">
+
+                        <div>
+
+                            <span>
+                                Fatores modificáveis
+                            </span>
+
+                            <strong id="modifiable">
+                                41%
+                            </strong>
+
+                        </div>
+
+                        <span class="risk-caption">
+                            diabetes + tabagismo + obesidade
+                        </span>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- RODAPÉ -->
+
+            <footer>
+
+                <span>
+                    HeartGuard • Projeto de Análise e Desenvolvimento de Sistemas
+                </span>
+
+                <span>
+                    ⚠ Os indicadores são estatísticos e não substituem avaliação médica.
+                </span>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <!-- JavaScript -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
